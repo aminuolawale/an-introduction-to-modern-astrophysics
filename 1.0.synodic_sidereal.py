@@ -1,23 +1,21 @@
 from typing import Optional
-from enum import Enum
+from dataclasses import dataclass
 """
 synodic period: The time taken between two successive oppositions or conjunctions of a celestial body, usually other planets within the solar system. 
 sidereal period: The time taken for a celestial body to return to the same position on the celestial sphere.
 inferior planet: A planet whose greatest elongation is less than 90 degrees (because they lie within Earth's orbit e.g. Mercury, Venus)
-superior planet: A planet whose greatest elongation is as high as 180 degrees (becuase they lie outside of Earth's orbit e.g. Jupiter, Uranus)
+superior planet: A planet whose greatest elongation is as high as 180 degrees (because they lie outside of Earth's orbit e.g. Jupiter, Uranus)
 """
 
 
+@dataclass
 class Planet:
-    __slots__ = "synodic_period", "is_superior", "sidereal_period"
-
-    def __init__(self, synodic_period: Optional[float] = None, sidereal_period: Optional[float] = None,  is_superior: bool = False):
-        self.synodic_period = synodic_period
-        self.is_superior = is_superior
-        self.sidereal_period = sidereal_period
+    synodic_period: Optional[float] = None
+    sidereal_period: Optional[float] = None
+    is_superior: bool = False
 
 
-class Planets(Planet):
+class Planets:
     VENUS = Planet(synodic_period=583.9)
     EARTH = Planet(sidereal_period=365.26)
     MARS = Planet(synodic_period=780)
